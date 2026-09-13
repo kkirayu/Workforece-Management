@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #f9f9fa;
+  --color-surface: #f9f9fa;
+  --color-surface-subtle: #fafafa;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f4;
+  --color-surface-container: #eeeeef;
+  --color-surface-container-high: #e8e8e9;
+  --color-surface-container-highest: #e2e2e3;
+  --color-surface-canvas: #ffffff;
+  --color-surface-dim: #dadadb;
+  --color-surface-bright: #f9f9fa;
+  --color-surface-muted: #f4f4f5;
+  --color-on-surface: #1a1c1d;
+  --color-on-surface-variant: #47464a;
+  --color-on-background: #1a1c1d;
+  --color-text-primary: #09090b;
+  --color-text-secondary: #71717a;
+  --color-text-muted: #a1a1aa;
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1c1b1d;
+  --color-on-primary-container: #858386;
+  --color-secondary: #5d5e66;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e3e1ec;
+  --color-on-secondary-container: #63646c;
+  --color-outline: #78767b;
+  --color-outline-variant: #c8c5ca;
+  --color-border-default: #e4e4e7;
+  --color-border-subtle: #f4f4f5;
+  --color-border-strong: #71717a;
+  --color-status-success: #10b981;
+  --color-status-success-bg: #ecfdf5;
+  --color-status-success-border: #a7f3d0;
+  --color-status-warning: #f59e0b;
+  --color-status-warning-bg: #fffbeb;
+  --color-status-warning-border: #fde68a;
+  --color-status-danger: #e11d48;
+  --color-status-danger-bg: #fff1f2;
+  --color-status-danger-border: #fecdd3;
+  --color-status-info: #6366f1;
+  --color-status-info-bg: #eef2ff;
+  --color-status-info-border: #c7d2fe;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f9f9fa !important;
+  color: #1a1c1d;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.42857142857;
+  letter-spacing: -0.006em;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+::-webkit-scrollbar { display: none; }
+
+/* Stitch-compatible Tailwind utility classes for the design system */
+.font-headline-lg { font-family: 'Inter', sans-serif; font-size: 24px; line-height: 32px; letter-spacing: -0.02em; font-weight: 600; }
+.font-headline-sm { font-family: 'Inter', sans-serif; font-size: 18px; line-height: 24px; letter-spacing: -0.015em; font-weight: 600; }
+.font-headline-xl { font-family: 'Inter', sans-serif; font-size: 32px; line-height: 40px; letter-spacing: -0.025em; font-weight: 700; }
+.font-label-default { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 16px; letter-spacing: -0.005em; font-weight: 500; }
+.font-label-sm { font-family: 'Inter', sans-serif; font-size: 11px; line-height: 14px; letter-spacing: 0.02em; font-weight: 500; }
+.font-body-default { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 20px; letter-spacing: -0.006em; font-weight: 400; }
+.font-body-sm { font-family: 'Inter', sans-serif; font-size: 12px; line-height: 16px; letter-spacing: 0em; font-weight: 400; }
+.font-body-lg { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 24px; letter-spacing: -0.011em; font-weight: 400; }
+.font-mono-metric-lg { font-family: 'JetBrains Mono', monospace; font-size: 28px; line-height: 32px; letter-spacing: -0.03em; font-weight: 600; }
+.font-mono-metric-sm { font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 18px; letter-spacing: -0.01em; font-weight: 500; }
+.font-mono-code { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 16px; letter-spacing: 0em; font-weight: 400; }
+
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-ping { animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+@keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
