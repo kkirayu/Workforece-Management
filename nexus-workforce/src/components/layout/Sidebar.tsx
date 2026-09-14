@@ -1,56 +1,61 @@
 import React from 'react';
-
-interface SidebarProps {
-  currentScreen: string;
-  onScreenChange: (screen: string) => void;
-}
+import { Link, useLocation } from 'react-router-dom';
 
 const navGroups = [
   {
     label: 'COMMAND CENTER',
     items: [
-      { id: '2', name: 'Overview & Dashboard', icon: 'dashboard' },
+      { path: '/dashboard', name: 'Overview & Dashboard', icon: 'dashboard' },
     ]
   },
   {
     label: 'ORGANIZATION',
     items: [
-      { id: '1', name: 'Org Chart & Hierarchy', icon: 'account_tree' },
-      { id: '8', name: 'Teams & Structure', icon: 'corporate_fare' },
+      { path: '/org-chart', name: 'Org Chart & Hierarchy', icon: 'account_tree' },
+      { path: '/teams', name: 'Teams & Structure', icon: 'corporate_fare' },
     ]
   },
   {
     label: 'PEOPLE',
     items: [
-      { id: '3', name: 'Employee Profiles', icon: 'badge' },
-      { id: '9', name: 'My Tasks & Work', icon: 'task_alt' },
+      { path: '/employee', name: 'Employee Profiles', icon: 'badge' },
+      { path: '/my-tasks', name: 'My Tasks & Work', icon: 'task_alt' },
     ]
   },
   {
     label: 'SKILLS & WORKLOAD',
     items: [
-      { id: '4', name: 'Workload & Capacity', icon: 'speed' },
-      { id: '6', name: 'Capacity Heatmap', icon: 'grid_view' },
+      { path: '/workload', name: 'Workload & Capacity', icon: 'speed' },
+      { path: '/heatmap', name: 'Capacity Heatmap', icon: 'grid_view' },
     ]
   },
   {
     label: 'PERFORMANCE',
     items: [
-      { id: '5', name: 'Performance & OKR', icon: 'stars' },
-      { id: '12', name: 'Career Development', icon: 'route' },
+      { path: '/performance', name: 'Performance & OKR', icon: 'stars' },
+      { path: '/career', name: 'Career Development', icon: 'route' },
     ]
   },
   {
     label: 'AI INTELLIGENCE',
     items: [
-      { id: '7', name: 'Rebalance Preview', icon: 'tune' },
-      { id: '11', name: 'What-If Simulation', icon: 'science' },
-      { id: '10', name: 'Workforce Planning', icon: 'forecasting' },
+      { path: '/rebalance', name: 'Rebalance Preview', icon: 'tune' },
+      { path: '/what-if', name: 'What-If Simulation', icon: 'science' },
+      { path: '/planning', name: 'Workforce Planning', icon: 'forecasting' },
     ]
   },
 ];
 
-export const Sidebar: React.FC<SidebarProps> = ({ currentScreen, onScreenChange }) => {
+const systemItems = [
+  { name: 'Settings & Admin', icon: 'admin_panel_settings' },
+  { name: 'Audit Log', icon: 'history' },
+  { name: 'AI Engine Config', icon: 'smart_toy' },
+];
+
+export const Sidebar: React.FC = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r border-[#e4e4e7] z-50 flex flex-col justify-between select-none overflow-y-auto">
       <div className="flex flex-col">
@@ -95,12 +100,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentScreen, onScreenChange 
               <div className="font-label-sm text-[10px] uppercase tracking-[0.08em] text-[#a1a1aa] px-2 mb-1.5 font-semibold">{group.label}</div>
               <div className="space-y-0.5">
                 {group.items.map((item) => {
-                  const isActive = currentScreen === item.id;
+                  const isActive = currentPath === item.path || currentPath.startsWith(item.path + '/');
                   return (
-                    <button
-                      key={item.id}
-                      onClick={() => onScreenChange(item.id)}
-                      className={`w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-left transition-all ${
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg transition-all ${
                         isActive
                           ? 'bg-[#e8e8e9] text-black font-semibold'
                           : 'text-[#47464a] hover:bg-[#f3f3f4] hover:text-black'
@@ -108,22 +113,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentScreen, onScreenChange 
                     >
                       <span className={`material-symbols-outlined text-[18px] shrink-0 ${isActive ? 'text-black' : 'text-[#a1a1aa]'}`}>{item.icon}</span>
                       <span className="font-label-default text-xs truncate">{item.name}</span>
-                    </button>
+                    </Link>
                   );
                 })}
               </div>
             </div>
           ))}
 
-          {/* Role-based sections */}
+          {/* Systems */}
           <div>
             <div className="font-label-sm text-[10px] uppercase tracking-[0.08em] text-[#a1a1aa] px-2 mb-1.5 font-semibold">SYSTEMS</div>
             <div className="space-y-0.5">
-              {[
-                { name: 'Settings & Admin', icon: 'admin_panel_settings' },
-                { name: 'Audit Log', icon: 'history' },
-                { name: 'AI Engine Config', icon: 'smart_toy' },
-              ].map((item) => (
+              {systemItems.map((item) => (
                 <button key={item.name} className="w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-left text-[#47464a] hover:bg-[#f3f3f4] hover:text-black transition-all">
                   <span className="material-symbols-outlined text-[18px] shrink-0 text-[#a1a1aa]">{item.icon}</span>
                   <span className="font-label-default text-xs truncate">{item.name}</span>
