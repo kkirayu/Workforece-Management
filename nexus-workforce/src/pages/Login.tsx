@@ -15,23 +15,25 @@ export const Login: React.FC = () => {
     setError('');
 
     try {
-      const { data } = await authApi.login(email, password);
-      const { token, user } = data.data;
+      const response = await authApi.login(email, password);
+      const { token, user } = response.data;
 
       localStorage.setItem('auth_token', token);
 
       setUser({
         id: user.id,
-        name: user.name,
+        name: user.employee ? `${user.employee.first_name} ${user.employee.last_name}` : user.name,
         email: user.email,
-        role: user.role,
+        role: user.employee?.level_id >= 7 ? 'director' : user.employee?.level_id >= 5 ? 'lead' : 'engineer',
       });
 
-      setTenant({
-        id: user.company?.id || 1,
-        name: user.company?.name || 'Acme Corp',
-        plan: user.company?.plan || 'Pro Plan',
-      });
+      if (user.employee?.company) {
+        setTenant({
+          id: user.employee.company.id,
+          name: user.employee.company.name,
+          plan: 'Pro Plan',
+        });
+      }
     } catch (err: any) {
       setError(err.response?.data?.message || 'Invalid credentials. Try admin@acme.internal / password');
     } finally {
