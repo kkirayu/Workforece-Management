@@ -18,6 +18,7 @@ const navGroups = [
   {
     label: 'PEOPLE',
     items: [
+      { path: '/employees', name: 'Employee Directory', icon: 'badge' },
       { path: '/employee', name: 'Employee Profiles', icon: 'badge' },
       { path: '/my-tasks', name: 'My Tasks & Work', icon: 'task_alt' },
     ]

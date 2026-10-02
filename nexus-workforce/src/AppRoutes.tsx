@@ -15,6 +15,7 @@ import { Screen9MyTasks } from '@/pages/Screen9MyTasks';
 import { Screen10Planning } from '@/pages/Screen10Planning';
 import { Screen11WhatIf } from '@/pages/Screen11WhatIf';
 import { Screen12Career } from '@/pages/Screen12Career';
+import { Screen13EmployeeList } from '@/pages/Screen13EmployeeList';
 import { Login } from '@/pages/Login';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       { path: 'planning', element: <Screen10Planning /> },
       { path: 'what-if', element: <Screen11WhatIf /> },
       { path: 'career', element: <Screen12Career /> },
+      { path: 'employees', element: <Screen13EmployeeList /> },
     ],
   },
 ]);
